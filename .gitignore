@@ -1,0 +1,9 @@
+.env
+*.env
+**/.env
+
+Projet_2_Orchestration.md
+
+.venv
+*.venv
+**/.env
