@@ -2,21 +2,28 @@
 import streamlit as st
 import requests 
 import pandas as pd
+import os
 
 session = requests.Session()
-API_INSERT = 
+API_URL = os.getenv("API_URL")
+API_INSERT = f"{API_URL}/insert"
+
+if API_URL is None:
+    st.error("API_URL is not set. Check the .env file.")
 
 st.title("Insert new data")
 
-st. text_input(label="Type information to add to database.", max_chars=500)
+user_text = st.text_input(label="Type information to add to database.", max_chars=500)
 
 if st.button("Send", help="Type information and press enter."):
+    if not user_text:
+        st.warning("Please type something before sending.")
     try:
-        response = session.get(API_INSERT)
+        response = session.post(API_INSERT, json={"text": user_text})
         if response.status_code == 200:
             st.write("Data sent")
         #    return True
-            response.
+            st.write(response.json())
         else:
             print(f"Warning: {API_INSERT} returned status code {response.status_code}")
            # return False
