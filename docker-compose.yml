@@ -7,8 +7,13 @@ services:
     ports:
       - "8003:8000"
     networks:
-      - app_network
-
+      - front-api
+      - api-db
+    depends_on:
+      - db
+    env_file:
+      - .env
+    
 
   app_front:
     build: ./app_front
@@ -16,7 +21,7 @@ services:
     ports:
       - "8502:8501"
     networks:
-      - app_network
+      - front-api
   
   db:
     image: postgres:15
@@ -25,11 +30,11 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/db_data
     networks:
-      - app_network
+      - api-db
 
 volumes:
-  db_data
+  db_data:
 
 networks:
-  app_network:
-    driver: bridge
+  front-api:
+  api-db:
