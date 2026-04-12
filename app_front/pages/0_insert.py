@@ -6,7 +6,7 @@ import os
 
 session = requests.Session()
 API_URL = os.getenv("API_URL")
-API_INSERT = f"{API_URL}/insert"
+API_INSERT = f"{API_URL}/data"
 
 if API_URL is None:
     st.error("API_URL is not set. Check the .env file.")

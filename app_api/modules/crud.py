@@ -1,22 +1,7 @@
 #app_api/modiles/crud.py
 import pandas as pd
 from .sqlite_db import SessionLocal
-from ..models.models import Data
-
-
-def get_db():
-    """Initialize the SQLite database and ensure required tables exist.
-
-    Returns: 
-        Session: a new SQLAlchemy sesion bound to the database engine.
-
-    """
-
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+from models.models import Data
 
 
 def input_data(db, text:str):

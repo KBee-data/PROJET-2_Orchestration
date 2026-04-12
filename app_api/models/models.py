@@ -1,6 +1,6 @@
 # app_api/models/models.py
 from sqlalchemy import Column, Integer, String
-from ..modules.sqlite_db import Base
+from modules.base import Base
 
 class Data(Base):
     __tablename__ = "data"

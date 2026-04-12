@@ -7,3 +7,12 @@ Projet_2_Orchestration.md
 .venv
 *.venv
 **/.env
+
+
+test.db
+*.sqlite
+*.db
+
+.pytest_cache
+
+cleaner_test_version.py

@@ -7,7 +7,7 @@ import os
 
 session=requests.Session()
 API_URL=os.getenv("API_URL")
-API_READ=f"{API_URL}/read"
+API_READ=f"{API_URL}/data"
 
 if API_URL is None:
     st.error("API is not not set. Check .env file.")

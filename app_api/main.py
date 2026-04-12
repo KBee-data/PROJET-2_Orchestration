@@ -1,10 +1,11 @@
 #app_api/main.py
-from .models.models import Base
-from .modules.sqlite_db import engine
+from modules.base import Base
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, StringConstraints, Field
 from sqlalchemy.orm import Session
-from .modules.crud import get_db, input_data, read_db
+from modules.connect import get_engine, get_db
+from modules.crud import input_data, read_db
+from contextlib import asynccontextmanager
 
 # Pydantic Models
 class TextRequest(BaseModel):
@@ -14,17 +15,22 @@ class TextResponse(BaseModel):
     id: int
     text : str
 
-#create tables automatically
-Base.metadata.create_all(bind=engine)
+# define lifespan
+@asynccontextmanager
+async def lifespan(app): 
+    engine = get_engine()
+    Base.metadata.create_all(bind=engine)
+    yield
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
+
 
 @app.get("/")
 def health_check():
     return {"status": "ok"}
 
 
-@app.post("/insert")
+@app.post("/data")
 def insert_text(words:TextRequest, db: Session = Depends(get_db)):
     """Inserts a new text into the database."""
     
@@ -36,7 +42,7 @@ def insert_text(words:TextRequest, db: Session = Depends(get_db)):
         raise HTTPException(status_code=500, detail=f'Database error')
     
 
-@app.get("/read")
+@app.get("/data")
 def display_data(db: Session = Depends(get_db)):
     """Displays all ids and texts in database."""
 
@@ -44,6 +50,11 @@ def display_data(db: Session = Depends(get_db)):
         datab = read_db(db)
         datab = datab.to_dict(orient="records")
         return datab
-    except Exception:
-        raise HTTPException(status_code=500, detail=f"Database error")
+    
+    except Exception as e:
+        print("Error:", e)
+        raise
+
+    # except Exception:
+    #     raise HTTPException(status_code=500, detail=f"Database error")
 

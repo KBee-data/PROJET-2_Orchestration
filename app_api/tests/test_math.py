@@ -1,6 +1,6 @@
 #tests/test_math.py
 
-from app_api.maths.math_module import add, sub, square
+from maths.math_module import add, sub, square
 
 def test_add():
     assert add(2,3) == 5
