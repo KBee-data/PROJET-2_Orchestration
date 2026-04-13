@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 #from frontend_logger import get_logger
 
-APP_API_URL = "http://app_api:8000/health"
+APP_API_URL = "http://app_api:8000/"
 
 st.title('MLOps Project 2 - API Ping')
 

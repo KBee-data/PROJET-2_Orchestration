@@ -22,13 +22,15 @@ services:
       - "8502:8501"
     networks:
       - front-api
+    env_file:
+      - .env
   
   db:
     image: postgres:15
     env_file:
       - .env
     volumes:
-      - db_data:/var/lib/postgresql/db_data
+      - db_data:/var/lib/postgresql/data
     networks:
       - api-db
 

@@ -3,6 +3,10 @@ import streamlit as st
 import requests 
 import pandas as pd
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 session = requests.Session()
 API_URL = os.getenv("API_URL")
@@ -21,9 +25,9 @@ if st.button("Send", help="Type information and press enter."):
     try:
         response = session.post(API_INSERT, json={"text": user_text})
         if response.status_code == 200:
-            st.write("Data sent")
+            st.success("Data sent")
         #    return True
-            st.write(response.json())
+            # st.write(response.json())
         else:
             print(f"Warning: {API_INSERT} returned status code {response.status_code}")
            # return False
