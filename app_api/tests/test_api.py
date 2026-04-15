@@ -1,3 +1,4 @@
+# app_api/tests/test_api.py
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -5,6 +6,11 @@ from modules import connect  # Override get_engine BEFORE importing app
 from main import app
 from modules.base import Base
 from modules.connect import get_db
+
+import os
+
+os.makedirs("app_api/data", exist_ok=True)
+
 
 # Create a test SQLite DB
 SQLALCHEMY_DATABASE_URL = "sqlite:///app_api/data/test.db"
