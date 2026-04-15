@@ -1,6 +1,6 @@
 # app_front/pages/0_insert.py
 import streamlit as st
-import requests 
+import requests
 import os
 from dotenv import load_dotenv
 
@@ -26,19 +26,19 @@ if st.button("Send", help="Type information and press enter."):
         if response.status_code == 200:
             st.success("Data sent")
         #    return True
-            # st.write(response.json())
+        # st.write(response.json())
         else:
             print(f"Warning: {API_INSERT} returned status code {response.status_code}")
-           # return False
-        
+    # return False
+
     except requests.exceptions.Timeout:
         print(f"Error: Request to {API_INSERT} timed out.")
-       # return False
-    
+    # return False
+
     except requests.exceptions.ConnectionError:
         print(f"Error: Could not connect to {API_INSERT}.")
-       # return False
-    
+    # return False
+
     except requests.exceptions.RequestException as e:
         print(f"Error: An unexpected error occured: {e}")
-      # return False
+    # return False

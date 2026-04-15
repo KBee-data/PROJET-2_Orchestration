@@ -5,9 +5,9 @@ import pandas as pd
 import requests
 import os
 
-session=requests.Session()
-API_URL=os.getenv("API_URL")
-API_READ=f"{API_URL}/data"
+session = requests.Session()
+API_URL = os.getenv("API_URL")
+API_READ = f"{API_URL}/data"
 
 if API_URL is None:
     st.error("API is not not set. Check .env file.")
@@ -18,7 +18,7 @@ if st.button("Display data"):
     try:
         response = session.get(API_READ)
 
-        if response.status_code==200:
+        if response.status_code == 200:
             st.success("Data retrieved")
 
             data = response.json()
@@ -27,14 +27,12 @@ if st.button("Display data"):
 
         else:
             st.error(f"Warning: {API_READ} returned status code {response.status_code}")
-    
+
     except requests.exceptions.Timeout:
         st.error(f"Error: Request to {API_READ} timed out.")
 
     except requests.exceptions.ConnectionError:
         st.error(f"Error: Could not connect to {API_READ}.")
-    
+
     except requests.exceptions.RequestException as e:
         st.error(f"Unexpected error: {e}")
-        
-            

@@ -17,8 +17,10 @@ TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin
 # Override get_engine BEFORE importing app
 from modules import connect
 
+
 def override_get_engine():
     return engine
+
 
 connect.get_engine = override_get_engine
 
@@ -41,15 +43,18 @@ def override_get_db():
     finally:
         db.close()
 
+
 app.dependency_overrides[get_db] = override_get_db
 
 # Test client
 # from fastapi.testclient import TestClient
 client = TestClient(app)
 
+
 def test_post_data():
     response = client.post("/data", json={"text": "hello"})
     assert response.status_code == 200
+
 
 def test_get_data():
     response = client.get("/data")

@@ -1,4 +1,4 @@
-#app_api/modules.base.by
+# app_api/modules.base.by
 
 from sqlalchemy.orm import declarative_base
 

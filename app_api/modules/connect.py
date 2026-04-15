@@ -1,4 +1,4 @@
-#app_api/modules/connect.py
+# app_api/modules/connect.py
 # creates the connection to PostgreSQL
 
 from sqlalchemy import create_engine
@@ -8,15 +8,20 @@ import os
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///app_api/data/data.db")
 
+
 def get_engine():
     return create_engine(
         DATABASE_URL,
-        connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+        connect_args={"check_same_thread": False}
+        if DATABASE_URL.startswith("sqlite")
+        else {},
     )
+
 
 def get_session():
     engine = get_engine()
     return sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
 
 def get_db():
     SessionLocal = get_session()
@@ -25,8 +30,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-
 
 
 # import os
@@ -55,7 +58,7 @@ def get_db():
 # def get_db():
 #     """Initialize the SQLite database and ensure required tables exist.
 
-#     Returns: 
+#     Returns:
 #         Session: a new SQLAlchemy sesion bound to the database engine.
 
 #     """
