@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from modules import connect   # Override get_engine BEFORE importing app
+from modules import connect  # Override get_engine BEFORE importing app
 from main import app
 from modules.base import Base
 from modules.connect import get_db
@@ -16,8 +16,10 @@ engine = create_engine(
 
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+
 def override_get_engine():
     return engine
+
 
 connect.get_engine = override_get_engine
 
