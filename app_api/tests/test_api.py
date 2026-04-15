@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -45,7 +44,7 @@ def override_get_db():
 app.dependency_overrides[get_db] = override_get_db
 
 # Test client
-from fastapi.testclient import TestClient
+# from fastapi.testclient import TestClient
 client = TestClient(app)
 
 def test_post_data():

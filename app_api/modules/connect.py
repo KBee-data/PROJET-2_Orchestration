@@ -4,7 +4,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
-from modules.base import Base
 
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///app_api/data/data.db")

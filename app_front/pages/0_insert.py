@@ -1,7 +1,6 @@
 # app_front/pages/0_insert.py
 import streamlit as st
 import requests 
-import pandas as pd
 import os
 from dotenv import load_dotenv
 

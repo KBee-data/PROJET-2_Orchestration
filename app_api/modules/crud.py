@@ -1,6 +1,5 @@
 #app_api/modiles/crud.py
 import pandas as pd
-from .sqlite_db import SessionLocal
 from models.models import Data
 
 

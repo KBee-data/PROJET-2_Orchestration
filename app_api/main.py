@@ -1,7 +1,7 @@
 #app_api/main.py
 from modules.base import Base
 from fastapi import FastAPI, HTTPException, Depends
-from pydantic import BaseModel, StringConstraints, Field
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from modules.connect import get_engine, get_db
 from modules.crud import input_data, read_db
@@ -39,7 +39,7 @@ def insert_text(words:TextRequest, db: Session = Depends(get_db)):
         return {"message": "Text added"}
 
     except Exception:
-        raise HTTPException(status_code=500, detail=f'Database error')
+        raise HTTPException(status_code=500, detail="Database error")
     
 
 @app.get("/data")
