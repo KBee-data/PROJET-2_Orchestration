@@ -1,13 +1,7 @@
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-# Override get_engine BEFORE importing app
-from modules import connect
 
-# Now import app
-from main import app
-from modules.base import Base
-from modules.connect import get_db
 
 # Create a test SQLite DB
 SQLALCHEMY_DATABASE_URL = "sqlite:///app_api/data/test.db"
@@ -20,7 +14,8 @@ engine = create_engine(
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-
+# Override get_engine BEFORE importing app
+from modules import connect
 
 
 def override_get_engine():
@@ -30,7 +25,10 @@ def override_get_engine():
 connect.get_engine = override_get_engine
 
 
-
+# Now import app
+from main import app
+from modules.base import Base
+from modules.connect import get_db
 
 # Create tables in test DB
 Base.metadata.drop_all(bind=engine)
