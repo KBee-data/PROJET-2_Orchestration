@@ -17,3 +17,8 @@ test.db
 
 cleaner_test_version.py
 ci_commented.yml
+
+# Test coverage
+.coverage
+.coverage.*
+htmlcov/

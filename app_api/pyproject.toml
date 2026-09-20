@@ -17,10 +17,18 @@ dependencies = [
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "--cov=. --cov-report=term-missing"
+
+[tool.coverage.run]
+omit = [
+    "tests/*",
+    "data/*",
+]
 
 [dependency-groups]
 dev = [
     "httpx>=0.28.1",
     "pytest>=9.0.3",
-    "ruff"
+    "pytest-cov>=7.1.0",
+    "ruff",
 ]
