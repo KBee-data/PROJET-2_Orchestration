@@ -40,4 +40,3 @@ def square(a: int | float) -> int | float:
         int | float: The number multiplied by itself.
     """
     return a * a
-

@@ -218,4 +218,3 @@ def test_get_data_database_error(monkeypatch):
     monkeypatch.setattr("main.read_db", mock_read_db)
     with pytest.raises(RuntimeError):
         client.get("/data")
-

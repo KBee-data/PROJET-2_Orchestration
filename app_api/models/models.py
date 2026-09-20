@@ -21,4 +21,3 @@ class Data(Base):
         Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
     )
     text = Column(String(255), nullable=False)
-

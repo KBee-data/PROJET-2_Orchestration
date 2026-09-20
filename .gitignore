@@ -22,3 +22,7 @@ ci_commented.yml
 .coverage
 .coverage.*
 htmlcov/
+
+# Sphinx build output
+docs/_build/
+

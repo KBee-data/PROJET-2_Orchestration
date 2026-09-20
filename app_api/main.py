@@ -70,9 +70,7 @@ def health_check() -> dict[str, str]:
 
 
 @app.post("/data", summary="Insert Text")
-def insert_text(
-    words: TextRequest, db: Session = Depends(get_db)
-) -> dict[str, str]:
+def insert_text(words: TextRequest, db: Session = Depends(get_db)) -> dict[str, str]:
     """Insert a new text record into the database.
 
     Args:
@@ -112,4 +110,3 @@ def display_data(db: Session = Depends(get_db)) -> list[dict[str, Any]]:
     except Exception as e:
         print("Error:", e)
         raise
-
