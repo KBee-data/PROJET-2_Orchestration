@@ -1,8 +1,28 @@
 
+# Environments & Secrets
 .env
 *.env
 **/.env
+.venv
+**/.venv
 
-__pycache__
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
 
-.pytest_cache
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Test & documentation artifacts
+.coverage
+.coverage.*
+htmlcov/
+docs/_build/
+
+# Git
+.git
+.gitignore
