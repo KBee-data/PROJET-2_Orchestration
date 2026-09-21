@@ -9,6 +9,8 @@ dependencies = [
     "streamlit>=1.55.0",
 ]
 
+[tool.uv]
+package = false
 
 [dependency-groups]
 dev = [
