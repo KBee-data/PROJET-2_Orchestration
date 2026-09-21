@@ -5,7 +5,8 @@ FROM python:3.11-slim AS builder
 
 # Install build dependencies and PostgreSQL development headers
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
+    build-essential \
+    python3-dev \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
