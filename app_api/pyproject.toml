@@ -14,13 +14,26 @@ dependencies = [
     "uvicorn>=0.41.0",
 ]
 
+[tool.uv]
+package = false
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "--cov=. --cov-report=term-missing"
+
+[tool.coverage.run]
+omit = [
+    "tests/*",
+    "data/*",
+]
 
 [dependency-groups]
 dev = [
     "httpx>=0.28.1",
     "pytest>=9.0.3",
-    "ruff"
+    "pytest-cov>=7.1.0",
+    "ruff",
+    "sphinx>=9.0.4",
+    "sphinx-rtd-theme>=3.1.0",
 ]

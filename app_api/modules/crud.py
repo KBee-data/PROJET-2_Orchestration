@@ -1,9 +1,23 @@
-# app_api/modiles/crud.py
+"""Database CRUD Operations Module.
+
+Provides create and read database helper operations for the Text models.
+"""
+
 import pandas as pd
+from sqlalchemy.orm import Session
 from models.models import Data
 
 
-def input_data(db, text: str):
+def input_data(db: Session, text: str) -> Data:
+    """Insert a new text record into the database.
+
+    Args:
+        db (Session): Active SQLAlchemy database session.
+        text (str): The text content to persist.
+
+    Returns:
+        Data: The persisted SQLAlchemy model instance with its assigned primary key id.
+    """
     item = Data(text=text)
     db.add(item)
     db.commit()
@@ -11,7 +25,15 @@ def input_data(db, text: str):
     return item
 
 
-def read_db(db):
+def read_db(db: Session) -> pd.DataFrame:
+    """Retrieve all text records from the database as a pandas DataFrame.
+
+    Args:
+        db (Session): Active SQLAlchemy database session.
+
+    Returns:
+        pd.DataFrame: DataFrame containing 'id' and 'text' columns.
+    """
     data = db.query(Data).all()
     data_list = []
     for item in data:
